@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index page</title>
+</head>
+<body>
+	<h1>Main Index Page</h1>
+	<img th:src="@{/images/sm1.png}" width="100px" height="100px">
+	<h2>Welcome to spring security</h2>
+	<p>This is unsecured page.You can access secure page after 
+	   authentication</p>
+	<p>Navigate to secure page after clicking the following link</p>
+	<a href="/secure" th:href="@{/secure}">Secure Page</a>
+</body>
+</html>
