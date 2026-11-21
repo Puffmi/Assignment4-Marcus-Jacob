@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf extras springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>Book review</title>
@@ -9,6 +10,8 @@
 	<ul>
     	<li th:each="r : ${reviews}" th:text="${reviews}">Reviews</li>
 	</ul>
-	    <a th:href="@{/addReview/}+${b.id}"> Add a review for this book!</a>
+	<div sec:authorize="isAuthenticated()">
+	    <a th:href="@{/addReview/}+${b.id}"> Add a review for this book!</a> <!-- Go to add-review.html -->
+	</div>
 </body>
 </html>

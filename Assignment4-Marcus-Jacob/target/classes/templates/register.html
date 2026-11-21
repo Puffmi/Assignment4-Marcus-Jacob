@@ -11,7 +11,7 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf extras springsecurity6">
 
 	<h1>Register New Account</h1>
 	<div id="error" class="error"></div>
-	<form method="post" name="form" action="#" th:action="@{/register}" onsubmit="return verify()">
+	<form method="post" name="form" action="#" th:action="@{/register}" onsubmit="return verify()"> <!-- Go to register.html -->
 	email           : <input type="email" name="username"><br>
 	password        : <input type="password" name="password"><br>
 	Verify password : <input type="password" name="verifyPassword"><br>

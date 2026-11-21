@@ -5,6 +5,13 @@
 <title>Add review</title>
 </head>
 <body>
+<label for="reviewText">Add your review here!</label>
+<form method="post" th:action="@{/reviewAdded}"> <!--   RETURN TO INDEX -->
+<textarea id="reviewText" name="reviewText" rows="4" cols="50">
+</textarea>
+<input type="submit" value="Add review!">
+
+</form>
 
 </body>
 </html>
