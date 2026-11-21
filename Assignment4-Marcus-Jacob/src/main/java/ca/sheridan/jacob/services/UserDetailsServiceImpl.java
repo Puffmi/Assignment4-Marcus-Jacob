@@ -1,5 +1,55 @@
-package ca.sheridan.jacob.services;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserDetailsServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import ca.sheridan.jacob.database.DatabaseAccess;
+
+
+/*
+ * !!!!!!!!IT IS MEANT TO ERROR UNTIL DATABASE METHODS ARE IMPLEMENTED!!!!!!!!
+ */
+
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService
+{
+
+	@Autowired
+	private DatabaseAccess da;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
+	{
+		ca.sheridan.jacob.beans.User user=da.findUserAccount(username);
+		if(user==null)
+		{
+			System.out.println("user not found"+username);
+			throw new UsernameNotFoundException("user not found error="+username);
+		}
+		
+		List<String> roleNameList=da.getRolesById(user.getUserid());
+		
+		List<GrantedAuthority> grantList=new ArrayList<GrantedAuthority>();
+		
+		if(roleNameList != null)
+		{
+			for(String role : roleNameList)
+			{
+				grantList.add(new SimpleGrantedAuthority(role));
+			}
+		}
+		
+		UserDetails userDetails=new org.springframework.security.core.userdetails.User(username, user.getEncryptedpassword(), grantList);
+		
+		return userDetails;
+	}
 
 }
+

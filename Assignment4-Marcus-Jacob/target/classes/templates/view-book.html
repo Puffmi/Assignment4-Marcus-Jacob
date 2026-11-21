@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Book review</title>
+</head>
+<body>
+	<h1> Reviews for <span th:text="${title}"/> </h1>
+	<ul>
+    	<li th:each="r : ${reviews}" th:text="${reviews}">Reviews</li>
+	</ul>
+	    <a th:href="@{/addReview/}+${b.id}"> Add a review for this book!</a>
+</body>
+</html>

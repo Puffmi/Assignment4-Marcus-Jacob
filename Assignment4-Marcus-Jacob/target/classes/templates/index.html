@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+
 <head>
 <meta charset="UTF-8">
 <title>Index page</title>
+<link th:href="@{/css/styles.css}" rel="stylesheet">
+
 </head>
 <body>
-	<h1>Main Index Page</h1>
-	<img th:src="@{/images/sm1.png}" width="100px" height="100px">
-	<h2>Welcome to spring security</h2>
-	<p>This is unsecured page.You can access secure page after 
-	   authentication</p>
-	<p>Navigate to secure page after clicking the following link</p>
-	<a href="/secure" th:href="@{/secure}">Secure Page</a>
+	<h1>Welcome to the Library Database!</h1>
+	<table>
+	<tr><th>Title</th><th>Author</th><th>Reviews</th>
+	<tr th:each="b : ${bookList}">
+	<td th:text="${b.title}>"></td>
+	<td th:text="${b.author}>"></td>
+	
+	<td><a th:href="@{/viewBook/}+${b.id}">Review</a></td>
+	</tr>
+	</table>
+	<div sec:authorize="isAuthenticated()">Add a Book</div>
+	
+	
+
+	<p> Login <a href="/login" th:href="@{/login}">here</a>.</p>
+		<div sec:authorize="isAuthenticated()">
+		<form method="post"><input type="submit" value="Logout" th:action="@{/logout}"></form>
+		</div>
+	
 </body>
 </html>

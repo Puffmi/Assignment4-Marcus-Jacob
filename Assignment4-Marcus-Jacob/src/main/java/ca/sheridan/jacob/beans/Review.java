@@ -6,6 +6,6 @@ import lombok.Data;
 public class Review {
 	private Long id;
 	private Long bookId;
-	private String test;
+	private String text;
 	
 }//review

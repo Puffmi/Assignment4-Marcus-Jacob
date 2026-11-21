@@ -6,9 +6,7 @@
 <link th:href="@{/css/mycss.css}" rel="stylesheet">
 </head>
 <body>
-	<h1>Welcome to the Login Page!</h1>
-	<img th:src="@{/images/sm1.png}" width="100px" height="100px">
-	<h2>Welcome to online shopping! Please log in to the form</h2>
+	<h1>Please enter below information to log in.</h1>
 	
 	<form method="post"  th:action="@{/login}" action="#">
 	
@@ -19,9 +17,11 @@
 	Email       :<input type="email"      name="username"><br>
 	Password    :<input type="password"   name="password"><br>
 	
-	<input type="submit"  value="LOGIN">
-	
+	<input type="submit"  value="Log In">	
 	</form>
+	<p> Not registered? register <a href="/register" th:href="@{/register}"> here</a>.</p>
+	<a href="/index" th:href="@{/index}">Return to Index</a>
+	
 	
 </body>
 </html>
